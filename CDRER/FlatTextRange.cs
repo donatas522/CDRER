@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Xml.Linq;
 
@@ -55,6 +56,22 @@ namespace FindAndReplace
                 searchPosition = searchStartIndex + replace.Length;
             }
         }
+
+        public bool FindText(string text)
+        {
+            int searchStartIndex = -1, searchEndIndex = -1, searchPosition = 0;
+
+            if (this.rangeText.ToString().Contains(text))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
 
         private LinkedListNode<FlatText> FindNode(int searchStartIndex)
         {

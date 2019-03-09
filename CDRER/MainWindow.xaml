@@ -5,28 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CDRER"
         mc:Ignorable="d"
+        x:Name="Main"
         Title="CDRER" Height="350" ResizeMode="CanResizeWithGrip" Width="350">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3">
         <Viewbox StretchDirection="Both" Stretch="Uniform">
         <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <TextBlock MinWidth="80" Text="Word failas:"/>
-                <TextBox x:Name="WordFileName" MinWidth="150" />
-                <Button x:Name="BrowseWordFileButton" Content="Browse..." Margin="5,0,0,0"/>
+                <TextBox Text="{Binding Path=WordFilePath, ElementName=Main }" Width="150" />
+                <Button Click="BrowseWordFileButton_OnClick" x:Name="BrowseWordFileButton" Content="Ieškoti..." Margin="5,0,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <TextBlock MinWidth="80" Text="Excel failas:"/>
-                <TextBox x:Name="ExcelFileName" MinWidth="150"/>
-                <Button x:Name="BrowseExcelFileButton" Content="Browse..." Margin="5,0,0,0"/>
+                    <TextBox Text="{Binding Path=ExcelFilePath, ElementName=Main }" Width="150"/>
+                <Button x:Name="BrowseExcelFileButton" Click="BrowseExcelFileButton_OnClick" Content="Ieškoti..." Margin="5,0,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <TextBlock  Text="Word tekstas:" MinWidth="80"/>
-                <TextBox x:Name="TextToSearch" MinWidth="150"/>
-                <Button x:Name="CheckWordText" Content="Tikrinti" Margin="5,0,0,0"/>
+                <TextBox x:Name="TextToSearchBox" MinWidth="150"/>
+                <Button Click="CheckWordText_OnClick" x:Name="CheckWordText" Content="Tikrinti" Margin="5,0,0,0"/>
                 <TextBlock x:Name="DoExistWordString" Margin="5,0,0,0">Fail.</TextBlock>
             </StackPanel>
             <StackPanel Margin="0,10,0,0">
-                <TextBlock Text="Excel langeliai (stulpeliai sudaro tekstą, kiekviena eilutė&#x0a;generuoja naują failą):" MinWidth="80"/>
+                    <TextBlock Text="Excel langeliai (stulpeliai sudaro tekstą, kiekviena eilutė&#x0a;generuoja naują failą):" MinWidth="80">
+                        <TextBlock.ToolTip>
+                            <StackPanel>
+                                <Image Source="ExcelIndeksai.png"/>
+                            </StackPanel>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
                 <DockPanel HorizontalAlignment="Center">
                     <TextBlock MinWidth="80">Eilutės</TextBlock>
                      <TextBlock>nuo</TextBlock>

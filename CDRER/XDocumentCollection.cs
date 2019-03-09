@@ -14,6 +14,7 @@ namespace FindAndReplace
     internal sealed class XDocumentCollection : IEnumerable<XDocument>, IDisposable
     {
         private readonly Package package;
+        private Stream stream;
         private readonly List<KeyValuePair<PackagePart, XDocument>> packageDocuments;
 
         private XDocumentCollection(Package package)
@@ -44,6 +45,12 @@ namespace FindAndReplace
         {
             this.SaveDocuments();
             this.package.Close();
+        }
+
+        public void Close()
+        {
+            this.package.Close();
+            
         }
 
         public static XDocumentCollection Open(Stream stream)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -116,8 +117,29 @@ namespace FindAndReplace
         }
 
         /// <summary>
+        /// Checks if specified string exists in current document
+        /// </summary>
+        /// <param name="find">Text to find</param>
+        /// <returns></returns>
+        public bool FindText(string find)
+        {
+            foreach (var range in ranges)
+            {
+                var contains = range.FindText(find);
+                if (contains)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        /// <summary>
         /// Saves and closes the Word document.
         /// </summary>
         public void Dispose() { this.documents.Dispose(); }
+        /// <summary>
+        /// Closes the Word document.
+        /// </summary>
+        public void Close() { this.documents.Close();}
     }
 }
